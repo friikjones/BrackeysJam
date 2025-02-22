@@ -8,6 +8,8 @@ TagManager:
   - TemperatureKnob
   - HumidityKnob
   - MusicVolumeKnob
+  - Removable
+  - Eraser
   layers:
   - Default
   - TransparentFX
@@ -16,8 +18,8 @@ TagManager:
   - Water
   - UI
   - Knob
-  - 
-  - 
+  - Clone
+  - Item
   - 
   - 
   - 

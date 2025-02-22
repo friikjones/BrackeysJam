@@ -4,6 +4,7 @@ public class KnobController : MonoBehaviour
 {
     public Camera mainCamera;
     public PlayerControllerScript playerController;
+    public ObjectRemover objectRemover;
 
     public LayerMask knobLayer;
     public float rotationSpeed = 1f;
@@ -20,7 +21,7 @@ public class KnobController : MonoBehaviour
     void Awake()
     {
         playerController = FindFirstObjectByType<PlayerControllerScript>();
-        Debug.Log("Check PlayerControllerScript instance", playerController);
+        objectRemover = FindFirstObjectByType<ObjectRemover>();
     }
     void Start()
     {   
@@ -39,7 +40,8 @@ public class KnobController : MonoBehaviour
             RaycastHit hit;
 
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, knobLayer))
-            {
+            {   
+                objectRemover.isEraserSelected = false;
                 knobTag = hit.collider.tag;
                 selectedKnob = hit.collider.gameObject;
                 lastMouseY = Input.mousePosition.y;
