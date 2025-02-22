@@ -5,7 +5,9 @@ TagManager:
   serializedVersion: 3
   tags:
   - Plane
-  - Knob
+  - TemperatureKnob
+  - HumidityKnob
+  - MusicVolumeKnob
   layers:
   - Default
   - TransparentFX
@@ -13,7 +15,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - Knob
   - 
   - 
   - 

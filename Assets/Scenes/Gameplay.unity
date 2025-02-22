@@ -357,9 +357,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainCamera: {fileID: 330585545}
-  targetTag: Knob
-  rotationSpeed: 5
-  maxRotation: 300
+  playerController: {fileID: 81533269}
+  knobLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  rotationSpeed: 1
+  maxRotation: 3
+  minControlValue: 1
+  maxControlValue: 100
 --- !u!108 &367187139 stripped
 Light:
   m_CorrespondingSourceObject: {fileID: 5198890402559435130, guid: 4c152f4426f0c044ab257ef16c4b9d41, type: 3}
@@ -534,8 +539,32 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8391222552659086748, guid: ede2b9e81c2da2745bd5cb521e0b2b78, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -8391222552659086748, guid: ede2b9e81c2da2745bd5cb521e0b2b78, type: 3}
+      propertyPath: m_TagString
+      value: HumidityKnob
+      objectReference: {fileID: 0}
+    - target: {fileID: -5568371526223589888, guid: ede2b9e81c2da2745bd5cb521e0b2b78, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -5568371526223589888, guid: ede2b9e81c2da2745bd5cb521e0b2b78, type: 3}
+      propertyPath: m_TagString
+      value: HumidityKnob
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: ede2b9e81c2da2745bd5cb521e0b2b78, type: 3}
       propertyPath: m_Name
+      value: HumidityKnob
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: ede2b9e81c2da2745bd5cb521e0b2b78, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: ede2b9e81c2da2745bd5cb521e0b2b78, type: 3}
+      propertyPath: m_TagString
       value: HumidityKnob
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -857,17 +886,33 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8391222552659086748, guid: ede2b9e81c2da2745bd5cb521e0b2b78, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -8391222552659086748, guid: ede2b9e81c2da2745bd5cb521e0b2b78, type: 3}
+      propertyPath: m_TagString
+      value: TemperatureKnob
+      objectReference: {fileID: 0}
+    - target: {fileID: -5568371526223589888, guid: ede2b9e81c2da2745bd5cb521e0b2b78, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: -5568371526223589888, guid: ede2b9e81c2da2745bd5cb521e0b2b78, type: 3}
       propertyPath: m_TagString
-      value: Knob
+      value: TemperatureKnob
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: ede2b9e81c2da2745bd5cb521e0b2b78, type: 3}
       propertyPath: m_Name
-      value: Knob
+      value: TemperatureKnob
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: ede2b9e81c2da2745bd5cb521e0b2b78, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: ede2b9e81c2da2745bd5cb521e0b2b78, type: 3}
       propertyPath: m_TagString
-      value: Knob
+      value: TemperatureKnob
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -893,7 +938,7 @@ GameObject:
   - component: {fileID: 1780178142}
   m_Layer: 0
   m_Name: Cube
-  m_TagString: Knob
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
