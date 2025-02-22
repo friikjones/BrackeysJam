@@ -7,7 +7,7 @@ public class KnobController : MonoBehaviour
 
     public LayerMask knobLayer;
     public float rotationSpeed = 1f;
-    public float maxRotation = 150f; 
+    public float maxRotation = 150f;
     private string knobTag = "";
 
     private GameObject selectedKnob;
@@ -23,7 +23,7 @@ public class KnobController : MonoBehaviour
         Debug.Log("Check PlayerControllerScript instance", playerController);
     }
     void Start()
-    {   
+    {
         if (mainCamera == null)
         {
             Debug.LogWarning("Main Camera not attached using Camera.main as fallback");
@@ -73,20 +73,20 @@ public class KnobController : MonoBehaviour
 
         switch (knobTag)
         {
-            case "HumidityKnob": 
-            {
-                playerController.humidity -= changeInValue;
-                playerController.humidity = Mathf.Clamp(playerController.humidity, minControlValue, maxControlValue);
-                Debug.Log($"Humidity Value: {playerController.humidity}");
-                break;
-            }
+            case "HumidityKnob":
+                {
+                    playerController.humidity -= changeInValue;
+                    playerController.humidity = Mathf.Clamp(playerController.humidity, minControlValue, maxControlValue);
+                    Debug.Log($"Humidity Value: {playerController.humidity}");
+                    break;
+                }
             case "TemperatureKnob":
-            {
-                playerController.lightStrength -= changeInValue;
-                playerController.lightStrength = Mathf.Clamp(playerController.lightStrength, minControlValue, maxControlValue);
-                Debug.Log($"Temperature Value: {playerController.lightStrength}");
-                break;
-            }
+                {
+                    playerController.lightStrength -= changeInValue;
+                    playerController.lightStrength = Mathf.Clamp(playerController.lightStrength, minControlValue, maxControlValue);
+                    Debug.Log($"Temperature Value: {playerController.lightStrength}");
+                    break;
+                }
             case "MusicVolumeKnob":
                 break;
             default:

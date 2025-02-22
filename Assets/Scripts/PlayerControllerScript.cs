@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PlayerControllerScript : MonoBehaviour
 {
-    public float humidity, lightStrength;
+    public float humidity, lightStrength, lightRatio;
     public Light mainLight;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -32,7 +32,7 @@ public class PlayerControllerScript : MonoBehaviour
         humidity = Mathf.Clamp(humidity, 0, 100);
         lightStrength = Mathf.Clamp(lightStrength, 0, 100);
 
-        mainLight.intensity = lightStrength / 10;
+        mainLight.intensity = lightStrength * lightRatio;
 
     }
 }

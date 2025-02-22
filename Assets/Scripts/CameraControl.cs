@@ -25,12 +25,12 @@ public class CameraControl : MonoBehaviour
     void FixedUpdate()
     {
 
-        if (Input.GetKey(KeyCode.Q))
+        if (Input.GetKey(KeyCode.A))
         {
             if (targetRotation < maxRotation)
                 targetRotation += rotationFinesse;
         }
-        if (Input.GetKey(KeyCode.E))
+        if (Input.GetKey(KeyCode.D))
         {
             if (targetRotation > minRotation)
                 targetRotation -= rotationFinesse;
@@ -51,6 +51,7 @@ public class CameraControl : MonoBehaviour
         // Debug.Log("current: " + transform.rotation.eulerAngles);
         transform.localRotation = Quaternion.Euler(Vector3.Lerp(transform.localRotation.eulerAngles, new Vector3(0, targetRotation, 0), Time.deltaTime * cameraSpeed));
         cameraPosition.localPosition = Vector3.Lerp(cameraPosition.localPosition, new Vector3(0, cameraPosition.localPosition.y, targetDist), Time.deltaTime * cameraSpeed);
+
 
     }
 }
