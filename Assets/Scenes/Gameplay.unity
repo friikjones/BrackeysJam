@@ -200,6 +200,7 @@ GameObject:
   - component: {fileID: 330585544}
   - component: {fileID: 330585547}
   - component: {fileID: 330585548}
+  - component: {fileID: 330585549}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -343,7 +344,22 @@ MonoBehaviour:
   - {fileID: 852607104}
   - {fileID: 2077090598}
   - {fileID: 1217165560}
+--- !u!114 &330585549
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 330585543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ccf7d888ba2b4e928cf07ab82eca093, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainCamera: {fileID: 330585545}
+  targetTag: Knob
   rotationSpeed: 5
+  maxRotation: 300
 --- !u!108 &367187139 stripped
 Light:
   m_CorrespondingSourceObject: {fileID: 5198890402559435130, guid: 4c152f4426f0c044ab257ef16c4b9d41, type: 3}
@@ -841,9 +857,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -5568371526223589888, guid: ede2b9e81c2da2745bd5cb521e0b2b78, type: 3}
+      propertyPath: m_TagString
+      value: Knob
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: ede2b9e81c2da2745bd5cb521e0b2b78, type: 3}
       propertyPath: m_Name
-      value: TemperatureKnob
+      value: Knob
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: ede2b9e81c2da2745bd5cb521e0b2b78, type: 3}
       propertyPath: m_TagString
@@ -873,7 +893,7 @@ GameObject:
   - component: {fileID: 1780178142}
   m_Layer: 0
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: Knob
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

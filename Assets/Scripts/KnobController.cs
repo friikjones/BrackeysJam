@@ -3,17 +3,30 @@ using UnityEngine;
 public class KnobController : MonoBehaviour
 {
     public Camera mainCamera;
-    public string targetTag = "Knob";
-    public float rotationSpeed = 50f;
+    public PlayerControllerScript playerController;
 
-    private GameObject selectedObject;
-    private float lastMouseX;
+    public LayerMask knobLayer;
+    public float rotationSpeed = 1f;
+    public float maxRotation = 150f; 
+    private string knobTag = "";
 
-    void Start()
+    private GameObject selectedKnob;
+    private float lastMouseY;
+    private bool isDragging = false;
+    private float currentRotation = 0f;
+    public float minControlValue = 1f;
+    public float maxControlValue = 100f;
+
+    void Awake()
     {
+        playerController = FindFirstObjectByType<PlayerControllerScript>();
+        Debug.Log("Check PlayerControllerScript instance", playerController);
+    }
+    void Start()
+    {   
         if (mainCamera == null)
         {
-            Debug.LogWarning("Main Camera not attached adding Camera.main as fallback");
+            Debug.LogWarning("Main Camera not attached using Camera.main as fallback");
             mainCamera = Camera.main;
         }
     }
@@ -24,31 +37,60 @@ public class KnobController : MonoBehaviour
         {
             Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
-            Debug.Log("Ray: " + ray);
 
-            if (Physics.Raycast(ray, out hit))
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity, knobLayer))
             {
-                Debug.Log("SELECIONADO");
-                selectedObject = hit.collider.gameObject;
-                lastMouseX = Input.mousePosition.x;
-                Debug.Log("Selected Object1: " + selectedObject);
+                knobTag = hit.collider.tag;
+                selectedKnob = hit.collider.gameObject;
+                lastMouseY = Input.mousePosition.y;
+                isDragging = true;
+                currentRotation = selectedKnob.transform.localRotation.eulerAngles.z;
             }
         }
 
         if (Input.GetMouseButtonUp(0))
         {
-            Debug.Log("Selected Object: NULL");
-            selectedObject = null;
+            selectedKnob = null;
+            isDragging = false;
         }
 
-        if (selectedObject != null)
+        if (isDragging && selectedKnob != null)
         {
-            float deltaX = Input.mousePosition.x - lastMouseX;
-            float rotationY = -deltaX * rotationSpeed * Time.deltaTime;
+            float deltaY = lastMouseY - Input.mousePosition.y;
+            float rotationDelta = deltaY * rotationSpeed;
 
-            selectedObject.transform.Rotate(Vector3.up, rotationY, Space.World);
+            UpdateControlValue(rotationDelta);
 
-            lastMouseX = Input.mousePosition.x;
+            selectedKnob.transform.Rotate(0f, 0f, -rotationDelta, Space.Self);
+
+            lastMouseY = Input.mousePosition.y;
+        }
+    }
+
+    void UpdateControlValue(float delta)
+    {
+        float changeInValue = delta / maxRotation;
+
+        switch (knobTag)
+        {
+            case "HumidityKnob": 
+            {
+                playerController.humidity -= changeInValue;
+                playerController.humidity = Mathf.Clamp(playerController.humidity, minControlValue, maxControlValue);
+                Debug.Log($"Humidity Value: {playerController.humidity}");
+                break;
+            }
+            case "TemperatureKnob":
+            {
+                playerController.lightStrength -= changeInValue;
+                playerController.lightStrength = Mathf.Clamp(playerController.lightStrength, minControlValue, maxControlValue);
+                Debug.Log($"Temperature Value: {playerController.lightStrength}");
+                break;
+            }
+            case "MusicVolumeKnob":
+                break;
+            default:
+                break;
         }
     }
 }
