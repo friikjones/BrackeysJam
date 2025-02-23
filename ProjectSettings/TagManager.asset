@@ -8,6 +8,8 @@ TagManager:
   - TemperatureKnob
   - HumidityKnob
   - MusicVolumeKnob
+  - Eraser
+  - Removable
   layers:
   - Default
   - TransparentFX

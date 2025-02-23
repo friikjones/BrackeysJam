@@ -5,6 +5,7 @@ public class PlayerControllerScript : MonoBehaviour
     public float humidity, lightStrength, lightRatio;
     public Light mainLight;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
+    public string selectedAction = "";
     void Start()
     {
         // cameraControlScript = transform.GetComponent<CameraControl>();

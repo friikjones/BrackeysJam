@@ -20,7 +20,6 @@ public class KnobController : MonoBehaviour
     void Awake()
     {
         playerController = FindFirstObjectByType<PlayerControllerScript>();
-        Debug.Log("Check PlayerControllerScript instance", playerController);
     }
     void Start()
     {
@@ -75,6 +74,7 @@ public class KnobController : MonoBehaviour
         {
             case "HumidityKnob":
                 {
+                    playerController.selectedAction = "HumidityKnobAction";
                     playerController.humidity -= changeInValue;
                     playerController.humidity = Mathf.Clamp(playerController.humidity, minControlValue, maxControlValue);
                     Debug.Log($"Humidity Value: {playerController.humidity}");
@@ -82,6 +82,7 @@ public class KnobController : MonoBehaviour
                 }
             case "TemperatureKnob":
                 {
+                    playerController.selectedAction = "TemperatureKnobAction";
                     playerController.lightStrength -= changeInValue;
                     playerController.lightStrength = Mathf.Clamp(playerController.lightStrength, minControlValue, maxControlValue);
                     Debug.Log($"Temperature Value: {playerController.lightStrength}");
