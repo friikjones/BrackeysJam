@@ -7,7 +7,7 @@ public class CameraControl : MonoBehaviour
     public float maxRotation, minRotation;
     public float maxDist, minDist;
     private float targetRotation = 180;
-    private float targetDist = -10;
+    private float targetDist = -25;
     private Transform cameraPosition;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
