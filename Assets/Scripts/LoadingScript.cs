@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class LoadingScript : MonoBehaviour
 {
-    public SceneAsset mainMenu;
+    [SerializeField] public string mainMenu;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -15,6 +15,6 @@ public class LoadingScript : MonoBehaviour
     // Update is called once per frame
     void NextScene()
     {
-        SceneManager.LoadScene(mainMenu.name, LoadSceneMode.Single);
+        SceneManager.LoadScene(mainMenu, LoadSceneMode.Single);
     }
 }

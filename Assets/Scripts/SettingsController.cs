@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class SettingsController : MonoBehaviour
 {
-    public SceneAsset mainMenu;
+    public string mainMenu;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -18,6 +18,6 @@ public class SettingsController : MonoBehaviour
     }
     public void LoadMainMenu()
     {
-        SceneManager.LoadScene(mainMenu.name, LoadSceneMode.Single);
+        SceneManager.LoadScene(mainMenu, LoadSceneMode.Single);
     }
 }
