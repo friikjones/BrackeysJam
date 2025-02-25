@@ -1,20 +1,21 @@
 using UnityEngine;
+using System.Collections;
 
 public class CloneObjectController : MonoBehaviour
 {
     public Camera mainCamera;
     public PlayerControllerScript playerController;
-
-    public GameObject[] cloneableObjects; 
+    public GameObject[] cloneableObjects;
+    public float growthDuration = 0.5f; // Duração da animação em segundos
 
     private GameObject selectedObject;
-    private GameObject clonedObject;
     private string cloneAction = "cloneAction";
 
     void Awake()
     {
         playerController = FindFirstObjectByType<PlayerControllerScript>();
     }
+
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
@@ -31,14 +32,33 @@ public class CloneObjectController : MonoBehaviour
                     selectedObject = clickedObject;
                     Debug.Log("Selected object: " + selectedObject.name);
                 }
-
                 else if (hit.collider.CompareTag("Plane") && selectedObject != null && playerController.selectedAction == cloneAction)
                 {
-                    clonedObject = Instantiate(selectedObject, hit.point, Quaternion.identity);
-                    clonedObject.tag = "Removable";
-                    Debug.Log("Created object at: " + hit.point);
+                    StartCoroutine(CreateAndGrowObject(hit.point));
                 }
             }
         }
+    }
+
+    IEnumerator CreateAndGrowObject(Vector3 position)
+    {
+        // Cria o objeto com escala zero
+        GameObject clonedObject = Instantiate(selectedObject, position, Quaternion.identity);
+        clonedObject.tag = "Removable";
+        clonedObject.transform.localScale = Vector3.zero;
+
+        Vector3 targetScale = selectedObject.transform.localScale;
+        float elapsedTime = 0f;
+
+        while (elapsedTime < growthDuration)
+        {
+            elapsedTime += Time.deltaTime;
+            float t = elapsedTime / growthDuration;
+            clonedObject.transform.localScale = Vector3.Lerp(Vector3.zero, targetScale, t);
+            yield return null;
+        }
+
+        clonedObject.transform.localScale = targetScale; // Garante que o objeto termine exatamente no tamanho desejado
+        Debug.Log("Created and grew object at: " + position);
     }
 }
